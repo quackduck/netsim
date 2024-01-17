@@ -89,19 +89,31 @@ class Neuron:
         return f"Neuron {self.index} with weight {self.weight} and bias {self.bias} and value {self.value}"
     
 def activation(x):
-    return np.exp(-x*x)
+    # return np.exp(-x*x)
     # return np.log(1 + np.exp(x))
-    # return np.tanh(x)
+    return np.tanh(x)
     # return 1/(1 + np.exp(-x))
 
 # create first two neurons
-network.append(Neuron(0, [1, 2], rand(), rand()))
+# network.append(Neuron(0, [1], rand(), rand()))
 
-network.append(Neuron(1, [3], rand(), rand()))
+# network.append(Neuron(1, [4], rand(), rand()))
 
-network.append(Neuron(2, [3], rand(), rand()))
+# network.append(Neuron(2, [1], rand(), rand()))
 
-network.append(Neuron(3, [], rand(), rand()))
+# network.append(Neuron(3, [1], rand(), rand()))
+
+# network.append(Neuron(4, [0], rand(), rand()))
+
+for i in range(0, 10):
+    network.append(Neuron(i, [i+1], rand(), rand()))
+
+network.append(Neuron(len(network), [0], rand(), rand()))
+
+# for i in range(3, 7):
+#     network.append(Neuron(i, [0], rand(), rand()))
+
+# network.append(Neuron(3, [], rand(), rand()))
 
 # for i in range(3, 4):
 #     # if i % 3 == 0:
@@ -199,7 +211,7 @@ def animate_nodes(G, pos=None, *args, **kwargs):
         return nodes,
 
     fig = plt.gcf()
-    animation = FuncAnimation(fig, update, interval=500, frames=100, blit=True)
+    animation = FuncAnimation(fig, update, interval=50, frames=10000, blit=True)
     return animation
 
 # make nx graph
